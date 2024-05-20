@@ -19,12 +19,14 @@ app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(cors({
     origin: [process.env.CLIENT_URL],
-    credentials: true
+    credentials: true,
+    allowedHeaders: 'Content-Type,Authorization',
 }));
 
 app.get('*',verifyUser)
 app.get("/jwtid",requireAuth,(req,res)=>{
-    console.log(res.locals.user)
+
+    console.log("local" + res.locals.user)
     res.status(201).send(res.locals.user);
 })
 
