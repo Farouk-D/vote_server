@@ -63,10 +63,10 @@ module.exports.login = async (req,res) => {
     
     if (isPassword) {
       const token = jwt.sign({id:user._id,userMail,userRole:user.userRole},process.env.TOKEN_SECRET, {expiresIn:"1d"})
-      //res.cookie("token",token,{httpOnly: true, secure:true, sameSite: "strict"})
-      return res.status(200).json({token,message:"Mot de passe Correct"});
+      res.cookie("token",token,{httpOnly: true, secure:true, sameSite: 'None',maxAge: 7 * 24 * 60 * 60 * 1000})
+      return res.status(200).json({message:"Mot de passe Correct"});
     }
-    else {return res.status(201).json({token:null,message:"Mauvais mdp"});}
+    else {return res.status(201).json({message:"Mauvais mdp"});}
   } catch (error) {
     console.error("Une erreur s'est produite lors de l'inscription :", error);
     res.status(500).json({ message: "Une erreur s'est produite lors de l'inscription." });
