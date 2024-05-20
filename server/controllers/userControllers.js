@@ -73,8 +73,8 @@ module.exports.login = async (req,res) => {
   }
 }
 
-module.exports.logout = (req, res) => {
-  res.clearCookie('token')
+module.exports.logout = async(req, res) => {
+  await res.cookie('token',"",{httpOnly:true,sameSite: 'None',secure:true,maxAge:1})
   return res.json({valid: true})
 }
 
