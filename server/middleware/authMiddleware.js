@@ -3,7 +3,7 @@ const UserModel = require('../models/Users');
 
 module.exports.verifyUser = (req,res,next) => {
     const token = req.cookies.token
-    console.log("token verify " + req.cookies)
+    console.log("token verify " + req.cookies.jwt)
     if (!token) {
         res.locals.user =null;
         return res.json({valid: false,message:"Vous n'etes pas connecté ! (pas de token)"})
