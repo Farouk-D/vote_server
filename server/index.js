@@ -35,5 +35,4 @@ app.use("/admin",decryptRouter);
 // Connection a notre base de données de Mango DB
 mongoose.connect("mongodb+srv://"+process.env.DB_USER+"@cluster0.w1hgrto.mongodb.net/")
 
-// Lancer le serveur (on prend 3001 car 3000 est utilisé par le client)
 app.listen(process.env.PORT || 5004, () => console.log("serveur started "));
