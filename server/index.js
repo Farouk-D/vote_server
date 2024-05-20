@@ -14,15 +14,14 @@ require('dotenv').config()
 const app = express()
 
 // Transforme toutes les données du FrontEnd en json
-app.use(express.json());
-app.use(cookieParser())
-app.use(bodyParser.json())
 app.use(cors({
     origin: [process.env.CLIENT_URL],
     credentials: true,
     allowedHeaders: 'Content-Type,Authorization',
 }));
-
+app.use(express.json());
+app.use(bodyParser.json())
+app.use(cookieParser())
 app.get('*',verifyUser)
 app.get("/jwtid",requireAuth,(req,res)=>{
 
