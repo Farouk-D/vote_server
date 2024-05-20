@@ -228,7 +228,6 @@ const createKeys = () => {
 
     let shamirSplit = splitShamir(bigInt(n), bigInt(m), bigInt(beta), nServer, neededDecrypt)
     console.log("\nSplit Shamir to ditributed : ")
-    //const mails = ["clementpenn78@gmail.com","roukfadu78@hotmail.com","hedikashi@hotmail.com","Jemsen78@hotmail.com"]
     const mails = [process.env.ADMIN_1,process.env.ADMIN_2,process.env.ADMIN_3,process.env.ADMIN_4]
     for (let j = 1; j <= nServer; j++) {
         //console.log(j, ":", shamirSplit[j-1].toString())
@@ -245,8 +244,8 @@ const sendSecretKey = async (email,indice,secretKey) => {
         port : 465,
         secure : true,
         auth: {
-          user: "votedcrypt@gmail.com",
-          pass: "rued eljw kzua cdtn",
+          user: process.env.MAIL_USER,
+          pass: process.env.MAIL_PASS,
         },
         tls: {
             rejectUnauthorized: false
